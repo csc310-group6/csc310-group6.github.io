@@ -1,0 +1,228 @@
+@font-face {
+  font-family: fira-code;
+  src: url(FiraCode-VariableFont_wght.ttf);
+}
+
+:root {
+  --background: #f6f6f6;
+  --font: #222;
+  --border: #333;
+  --screen: #eee;
+  --calculator: #aaa;
+  --btn: #eee;
+  --btn-hover: #ddd;
+  --btn-active: #ccc;
+  --btn-red: #faa;
+  --btn-red-hover: #e99;
+  --btn-red-active: #d88;
+  --btn-blue: #aaf;
+  --btn-blue-hover: #99e;
+  --btn-blue-active: #88d;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: var(--font);
+  font-family: fira-code;
+  line-height: 1.6;
+  /* Split the body into 2 columns, 1 for the side bar, one for the
+  calculator or biodata */
+  display: grid;
+  height: 100vh;
+  overflow-y: hidden;
+  grid-template-columns: 300px auto;
+}
+
+button {
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 75vh;
+  min-height: 500px;
+  padding: 10px;
+  margin-top: 50px;
+}
+
+.main > div {
+  margin-bottom: 10px;
+}
+
+.calculator {
+  width: 400px;
+  border: 2px var(--border) solid;
+  border-radius: 15px;
+  padding: 20px;
+  background-color: var(--calculator);
+  margin-top: 50px;
+}
+
+.screen {
+  padding: 10px 20px;
+  border: 2px var(--border) solid;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  background-color: var(--screen);
+  text-align: right;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.screen-last {
+  min-height: 32px;
+  font-size: 20px;
+}
+
+.screen-current {
+  min-height: 64px;
+  font-size: 40px;
+}
+
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+
+.span-2 {
+  grid-column: span 2;
+}
+
+.btn {
+  padding: 20px;
+  border: 2px var(--border) solid;
+  border-radius: 5px;
+  background-color: var(--btn);
+  font-size: 20px;
+}
+
+.btn:hover {
+  background-color: var(--btn-hover);
+}
+
+.btn:active {
+  background-color: var(--btn-active);
+}
+
+.btn-red {
+  background-color: var(--btn-red);
+}
+
+.btn-red:hover {
+  background-color: var(--btn-red-hover);
+}
+
+.btn-red:active {
+  background-color: var(--btn-red-active);
+}
+
+.btn-blue {
+  background-color: var(--btn-blue);
+}
+
+.btn-blue:hover {
+  background-color: var(--btn-blue-hover);
+}
+
+.btn-blue:active {
+  background-color: var(--btn-blue-active);
+}
+
+.sidebar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--calculator);
+}
+
+
+/* For the navigation sidebar */
+
+.sidebar > h3 {
+  margin-bottom: 10px;
+}
+
+.sidebar > ul {
+  list-style-type: none;
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #fff;
+}
+
+a {
+  color: blue;
+}
+
+/* For the bio data page */
+
+.bio-data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding-top: 200px;
+  padding-bottom: 100px;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.bio-data-container > h2 {
+  margin: 30px 0;
+}
+
+.bio-data-container > div {
+  margin-bottom: 10px;
+}
+
+.bio-data {
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--calculator);
+  border-radius: 5px;
+  padding: 50px;
+  width: 500px;
+}
+
+div.bio-data > div {
+  margin-bottom: 10px;
+}
+
+.bio-data:last-child {
+  margin-bottom: 0;
+}
+
+.bio-data-section {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2em;
+}
+
+.bio-data-section > p {
+  font-weight: 500;
+}
+
+.bio-data-section > input {
+  border: none;
+  font-family: inherit;
+  font-size: 1em;
+  border-bottom: 1px dashed #808080;
+}
