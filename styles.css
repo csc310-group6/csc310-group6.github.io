@@ -35,194 +35,256 @@ body {
   /* Split the body into 2 columns, 1 for the side bar, one for the
   calculator or biodata */
   display: grid;
-  height: 100vh;
-  overflow-y: hidden;
   grid-template-columns: 300px auto;
+  /* Don't show the parts of the body that extend the screen height */
+  overflow-y: hidden;
 }
 
+/* Styling for the calculator buttons */
 button {
+  /* Removing the default borders from the calculator buttons */
   border: none;
+  outline: none;
+  /* The color, font family and font size should be determined from the parent */
   color: inherit;
   font-family: inherit;
   font-size: inherit;
+  /* The cursor should appear as a pointer when a button is hovered over */
   cursor: pointer;
-  outline: none;
 }
 
+/* Styling for the container holding the calculator */
 .main {
+  /* Centering the calculator */
   display: flex;
   align-items: center;
   justify-content: center;
+  /* The height of the container should take up 3/4 of the screen height */
   height: 75vh;
-  min-height: 500px;
+  /* Space to keep the calculator from touching the borders of the screen */
   padding: 10px;
   margin-top: 50px;
 }
 
-.main > div {
-  margin-bottom: 10px;
-}
-
+/* Styling for the calculator */
 .calculator {
+  /* Setting the calculator's width */
   width: 400px;
+  /* Styling the calculator's border */
   border: 2px var(--border) solid;
   border-radius: 15px;
+  /* Space between the calculator's edges */
   padding: 20px;
   background-color: var(--calculator);
   margin-top: 50px;
 }
 
+/* Styling for the calculator's screen */
 .screen {
+  /* Space on screen */
   padding: 10px 20px;
+  /* Giving the screen a solid black border */
   border: 2px var(--border) solid;
+  /* Curving the screen's border corners */
   border-radius: 5px;
+  /* Space between the screen and the calculator buttons */
   margin-bottom: 20px;
+  /* Coloring the screen */
   background-color: var(--screen);
+  /* Shifting text in the screen to the right */
   text-align: right;
+  /* When the number becomes too long, break in on separate lines */
   word-wrap: break-word;
   word-break: break-all;
 }
 
+/* Styling for the upper part of the screen */
 .screen-last {
   min-height: 32px;
   font-size: 20px;
 }
 
+/* Styling for the lower part of the screen */
 .screen-current {
   min-height: 64px;
   font-size: 40px;
 }
 
+/* Styling for the arrangement of the calculator buttons */
 .buttons-grid {
   display: grid;
+  /* Four columns to contain four normal sized buttons */
   grid-template-columns: repeat(4, 1fr);
+  /* Space between the buttons on the calculator */
   grid-gap: 10px;
 }
 
+/* Styling for the double width buttons: clear and delete */
 .span-2 {
   grid-column: span 2;
 }
 
+/* Styling for all the buttons */
 .btn {
+  /* Space between the number in the button and the button boundaries */
   padding: 20px;
+  /* Giving the buttons a solid black boundary */
   border: 2px var(--border) solid;
+  /* Curving the buttons corner edges */
   border-radius: 5px;
+  /* Giving the buttons a light gray background */
   background-color: var(--btn);
   font-size: 20px;
 }
 
+/* Styling for making the button color darker when hovered over */
 .btn:hover {
   background-color: var(--btn-hover);
 }
 
+/* Styling for making the button color darker when clicking */
 .btn:active {
   background-color: var(--btn-active);
 }
 
+/* Styling for the red button, clear */
 .btn-red {
   background-color: var(--btn-red);
 }
 
+/* Styling to make the red button appear a darker red when hovered over*/
 .btn-red:hover {
   background-color: var(--btn-red-hover);
 }
 
+
+/* Styling to make the red button darker when clicking over*/
 .btn-red:active {
   background-color: var(--btn-red-active);
 }
 
+/* Styling for the blue button, delete and add new bio data */
 .btn-blue {
   background-color: var(--btn-blue);
 }
 
+/* Styling to make the blue button appear a darker red when hovered over*/
 .btn-blue:hover {
   background-color: var(--btn-blue-hover);
 }
 
+/* Styling to make the blue button darker when clicking over*/
 .btn-blue:active {
   background-color: var(--btn-blue-active);
 }
 
+/* Styling for the sidebar */
 .sidebar {
-  height: 100%;
+  /* Making it as fit the screen height */
+  height: 100vh;
   display: flex;
-  align-items: center;
+  /* Centering the items in the sidebar */
   justify-content: center;
+  align-items: center;
+  /* Making the items orient from top to bottom rather than left to right */
   flex-direction: column;
-  background-color: var(--calculator);
+  /* Making it a light shade of gray */
+  background-color: #eee
 }
 
 
-/* For the navigation sidebar */
-
+/* Styling for the heading in the navigation sidebar */
 .sidebar > h3 {
+  /* Putting space between the heading in the sidebar and the links */
   margin-bottom: 10px;
 }
 
+/* Styling for the list of links in the sidebar */
 .sidebar > ul {
+  /* Removing the dots in front of the list items */
   list-style-type: none;
+  /* Giving the link font a bigger size */
   font-size: 1.1em;
+  /* Making the link text bold */
   font-weight: 700;
-  color: #fff;
 }
 
+/* Giving the links in the sidebar a blue color */
 a {
   color: blue;
 }
 
-/* For the bio data page */
-
+/* Styling for the container holding the bio data */
 .bio-data-container {
   display: flex;
+  /* Displaying items in a vertical order instead of horizontal */
   flex-direction: column;
+  /* Centering the form */
   align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 40px;
-  padding-top: 200px;
+  /* Space between the form and the bottom of the screen */
   padding-bottom: 100px;
+  /* Fixing the height to make it equal to the screen height */
   height: 100vh;
+  /* Making the container scoll */
   overflow-y: scroll;
 }
 
+/* Giving the bio data heading space between the screen top and the form */
 .bio-data-container > h2 {
   margin: 30px 0;
 }
 
-.bio-data-container > div {
-  margin-bottom: 10px;
-}
-
+/* Styling for bio data of each person */
 .bio-data {
+  /* Giving the bio data for a single person a card-like border */
   border-width: 1px;
   border-style: solid;
   border-color: var(--calculator);
   border-radius: 5px;
+  /* Space in the card */
   padding: 50px;
   width: 500px;
+  /* Space between one info in the card and the next */
+  margin-bottom: 20px;
 }
 
+/* Space between one card and the next */
 div.bio-data > div {
   margin-bottom: 10px;
 }
 
-.bio-data:last-child {
-  margin-bottom: 0;
+/* Centering the header for the new bio data form */
+div.bio-data > h3 {
+  text-align: center;
 }
 
+/* Reducing the size of the add button for the new bio data form */
+div.bio-data > .btn {
+  padding: 10px 15px;
+}
+
+/* Styling the content inside the bio data cards */
 .bio-data-section {
   display: flex;
+  /* Spacing between a bio data name like "name" and the value for a person */
   justify-content: space-between;
+  /* Increasing the font size of the bio data content */
   font-size: 1.2em;
 }
 
+/* Making the bio data name like "matric no" bold */
 .bio-data-section > p {
   font-weight: 500;
 }
 
-.bio-data-section > input {
+/* Styling the bio data values */
+.bio-data-section input {
+  /* Removing the default borders from the input */
   border: none;
+  /* Using the parent's font family */
   font-family: inherit;
+  /* Making the font size bigger */
   font-size: 1em;
+  /* Giving it a dashed underline */
   border-bottom: 1px dashed #808080;
 }

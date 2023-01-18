@@ -24,16 +24,21 @@ const lastOperationScreen = document.getElementById('lastOperationScreen')
 // The area used to display what is currently being inputted
 const currentOperationScreen = document.getElementById('currentOperationScreen')
 
+// Listening for keyboard input
 window.addEventListener('keydown', handleKeyboardInput)
+// Listening for events from the special function buttons
+// =, clear, delete and point
 equalsButton.addEventListener('click', evaluate)
 clearButton.addEventListener('click', clear)
 deleteButton.addEventListener('click', deleteNumber)
 pointButton.addEventListener('click', appendPoint)
 
+// Listen for events on all number buttons
 numberButtons.forEach((button) =>
   button.addEventListener('click', () => appendNumber(button.textContent))
 )
 
+// Listen for events on all operator buttons
 operatorButtons.forEach((button) =>
   button.addEventListener('click', () => setOperation(button.textContent))
 )
@@ -63,8 +68,10 @@ function clear() {
 // Puts a decimal point on the screen
 function appendPoint() {
   if (shouldResetScreen) resetScreen()
+  // Nothing on screen is assumed to be 0
   if (currentOperationScreen.textContent === '')
     currentOperationScreen.textContent = '0'
+  // Can't have more than 1 decimal point in a single number
   if (currentOperationScreen.textContent.includes('.')) return
   currentOperationScreen.textContent += '.'
 }
@@ -78,10 +85,16 @@ function deleteNumber() {
 
 // Sets the current arithmetic operation
 function setOperation(operator) {
+  // Any arithmetic operation already typed should be evaluated
+  // For example, after typing 2 + 3 if the user types another '+',
+  // the 2 + 3 must be evaluated first and the firstOperand set to the resulting 5
+  // so it can become the first operand in the next evaluation
   if (currentOperation !== null) evaluate()
   firstOperand = currentOperationScreen.textContent
   currentOperation = operator
   lastOperationScreen.textContent = `${firstOperand} ${currentOperation}`
+  // The screen should be reset right before the second operand is
+  // to be typed
   shouldResetScreen = true
 }
 
@@ -94,28 +107,38 @@ function evaluate() {
     return
   }
   secondOperand = currentOperationScreen.textContent
-  currentOperationScreen.textContent = roundResult(
-    operate(currentOperation, firstOperand, secondOperand)
-  )
+  // Computing and displaying the result on screen
+  currentOperationScreen.textContent = roundResult(operate(currentOperation, firstOperand, secondOperand))
   lastOperationScreen.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`
+  // Resetting the current operation
   currentOperation = null
 }
 
+// Rounding the number `number` to 3 decimal places
 function roundResult(number) {
   return Math.round(number * 1000) / 1000
 }
 
-// Determines what should be done on keyboard input
+// Determines what should be done when the keyboard is pressed
 function handleKeyboardInput(e) {
+  // If the key pressed is a number in the range [0, 9],
+  // put it on screen
   if (e.key >= 0 && e.key <= 9) appendNumber(e.key)
+  // Put a point on screen if the dot key was pressed
   if (e.key === '.') appendPoint()
+  // Evaluate the result if enter or equals to was pressed
   if (e.key === '=' || e.key === 'Enter') evaluate()
+  // Remove a number from screen if backspace was pressed
   if (e.key === 'Backspace') deleteNumber()
+  // Clear the screen if the escape key was pressed
   if (e.key === 'Escape') clear()
+  // If an arithmetic operator was pressed, format it and put it on screen
   if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/')
     setOperation(convertOperator(e.key))
 }
 
+// Used to determine what to display on screen when an
+// arithmetic operator on the keyboard is pressed
 function convertOperator(keyboardOperator) {
   if (keyboardOperator === '/') return '÷'
   if (keyboardOperator === '*') return '×'
@@ -139,6 +162,8 @@ function divide(a, b) {
   return a / b
 }
 
+// Used to determine which arithmetic operation to perform
+// given the arithmetic symbol `operator`
 function operate(operator, a, b) {
   a = Number(a)
   b = Number(b)
